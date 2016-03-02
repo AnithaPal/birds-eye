@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Birds Eye</title>
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<style> .glyphicon-thumbs-up { cursor:pointer } </style>
+	</head>
+	<body ng-app="birdsEye" ng-controller="MainCtrl">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="page_header">
+					<h1>Birds Eye View </h1>
+				</div>
+				<div ng-repeat="post in posts | orderBy: '-upvotes'">
+					<span  class="glyphicon glyphicon-thumbs-up" ng-click="incrementUpvotes(post)"> </span>
+					<a ng-show="post.link" href="{{post.link}}">
+						{{post.title}}
+					</a>
+					<span style="font-size:20px; margin-left:10px;" ng-hide="post.link">
+						{{post.title}}
+					</span>
+						- upvotes: {{post.upvotes}}
+				</div>
+
+			  <form ng-submit="addPost()" style="margin-top:30px;">
+					<h3>Add a new post</h3>
+					<div class ="form-group">
+						<input type="text" class="form-control" placeholder="title" ng-model="title"></input>
+					</div>
+					<div class="form-group">
+						<input type="textarea" class ="form-control" placeholder="content" ng-model="content"></input>
+					</div>
+  				<button class="btn btn-primary"type="submit">Post</button>
+				</form>
+			</div>
+		</div>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
